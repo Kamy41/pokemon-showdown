@@ -19677,4 +19677,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Electric",
 		contestType: "Cool",
 	},
-};
+	bugpower: {
+		num: 800,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Bug Power",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		useSourceSpecialDefensiveAsOffensive: true,
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.dex.getEffectiveness('Fighting', type);
+		},
+		multihit: [2, 4],
+		secondary: {
+			chance: 30,
+			self: {
+				boosts: {
+					atk: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Bug",
+	
